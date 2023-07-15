@@ -2,4 +2,4 @@ streamlit== 1.24.1
 pandas==2.0.3
 textblob==0.15.3
 plotly==5.3.1
-basc_py4chan==0.6.5
+basc_py4chan==0.6.6
