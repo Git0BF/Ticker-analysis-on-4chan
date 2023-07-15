@@ -52,14 +52,13 @@ def scrape_4chan():
                         'Post Content': [post_content]})
                 
                 data = pd.concat([data,new_row],ignore_index=True)
-                print(len(data))
 
                 # If the DataFrame has reached 1000 rows, break the loop
-                if len(data) >= 100:
+                if len(data) >= 500:
                     break
 
             # If the DataFrame has reached 1000 rows, break the loop
-            if len(data) >= 100:
+            if len(data) >= 500:
                 break
 
             # Add a delay to avoid overloading the server
@@ -132,7 +131,7 @@ def main():
 
     # Display the sentiment scores for the selected ticker
     st.header(f"Sentiment Scores for {selected_ticker}")
-    st.dataframe(filtered_data[['Thread Title', 'Sentiment']])
+    st.dataframe(filtered_data['Sentiment'])
 
 if __name__ == "__main__":
     main()
