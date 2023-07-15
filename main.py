@@ -1,6 +1,7 @@
 import streamlit as st
 from textblob import TextBlob
 import plotly.graph_objects as go
+from wordcloud import WordCloud
 import pandas as pd
 import re
 import time
@@ -114,8 +115,16 @@ def main():
     fig.update_layout(title_text='Sentiment Distribution', xaxis_title='Sentiment', yaxis_title='Count')
     st.plotly_chart(fig)
 
+    # 3. Word Cloud
+    text = ' '.join(post for post in data['Post Content'])
+    wordcloud = WordCloud(background_color='white').generate(text)
+
     # Create a dropdown select box for the tickers
     tickers = data['Tickers'].explode().unique()
+    
+    # Filter out nan values
+    tickers = [ticker for ticker in tickers if str(ticker) != 'nan']
+
     selected_ticker = st.selectbox('Select a Ticker', options=tickers)
 
     # Filter the data for the selected ticker
@@ -124,6 +133,10 @@ def main():
     # Display the sentiment scores for the selected ticker
     st.header(f"Sentiment Scores for {selected_ticker}")
     st.dataframe(filtered_data[['Thread Title', 'Sentiment']])
+
+if __name__ == "__main__":
+    main()
+
 
 if __name__ == "__main__":
     main()
