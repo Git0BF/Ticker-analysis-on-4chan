@@ -3,3 +3,4 @@ pandas==2.0.3
 textblob==0.15.3
 plotly==5.3.1
 basc_py4chan==0.6.6
+wordcloud==1.9.2
