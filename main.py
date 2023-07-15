@@ -44,7 +44,7 @@ def scrape_4chan():
                 post_content = post.text_comment
 
                 # Append the data to the DataFrame
-                data = data.append({'Thread ID': thread_id, 
+                data = data.concat({'Thread ID': thread_id, 
                                     'Thread Title': thread_title, 
                                     'Thread Creation Time': thread_creation_time, 
                                     'Post ID': post_id, 
