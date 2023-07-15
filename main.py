@@ -44,13 +44,18 @@ def scrape_4chan():
                 post_content = post.text_comment
 
                 # Append the data to the DataFrame
-                data = data.append({'Thread ID': thread_id, 'Thread Title': thread_title, 'Thread Creation Time': thread_creation_time, 'Post ID': post_id, 'Post Content': post_content}, ignore_index=True)
+                data = data.append({'Thread ID': thread_id, 
+                                    'Thread Title': thread_title, 
+                                    'Thread Creation Time': thread_creation_time, 
+                                    'Post ID': post_id, 
+                                    'Post Content': post_content}, 
+                                    ignore_index=True)
 
-                # If the DataFrame has reached 500 rows, break the loop
+                # If the DataFrame has reached 1000 rows, break the loop
                 if len(data) >= 1000:
                     break
 
-            # If the DataFrame has reached 500 rows, break the loop
+            # If the DataFrame has reached 1000 rows, break the loop
             if len(data) >= 1000:
                 break
 
