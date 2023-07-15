@@ -51,6 +51,7 @@ def scrape_4chan():
                         'Post Content': [post_content]})
                 
                 data = pd.concat([data,new_row],axis=1)
+                print(len(data))
 
                 # If the DataFrame has reached 1000 rows, break the loop
                 if len(data) >= 100:
