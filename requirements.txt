@@ -5,4 +5,4 @@ plotly==5.3.1
 basc_py4chan==0.6.6
 wordcloud==1.9.2
 numpy==1.21.2
-Pillow==8.3.2
+matplotlib--3.7.2
