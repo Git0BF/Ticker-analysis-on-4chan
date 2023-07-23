@@ -105,19 +105,7 @@ def main():
     # Display the DataFrame
     st.dataframe(data)
 
-    # 1. Ticker Counts
-    tickers = data['Tickers'].explode().value_counts()
-
-    fig = go.Figure([go.Bar(x=tickers.index[:15], y=tickers.values[:15])])
-    fig.update_layout(title_text='Top 15 Most Mentioned Tickers', xaxis_title='Ticker', yaxis_title='Count')
-    st.plotly_chart(fig)
-
-    # 2. Sentiment Distribution
-    fig = go.Figure(data=[go.Histogram(x=data['Sentiment'], nbinsx=20)])
-    fig.update_layout(title_text='Sentiment Distribution', xaxis_title='Sentiment', yaxis_title='Count')
-    st.plotly_chart(fig)
-
-    # 3. Word Cloud
+     # 1. Word Cloud
     st.set_option('deprecation.showPyplotGlobalUse', False)
     text = ' '.join(post for post in data['Post Content'])
     wordcloud = WordCloud(width = 1000, height = 500).generate(text)
@@ -126,7 +114,19 @@ def main():
     plt.axis("off")
     plt.show()
     st.pyplot()
-    plt.close() 
+    plt.close()
+
+    # 2. Ticker Counts
+    tickers = data['Tickers'].explode().value_counts()
+
+    fig = go.Figure([go.Bar(x=tickers.index[:15], y=tickers.values[:15])])
+    fig.update_layout(title_text='Top 15 Most Mentioned Tickers', xaxis_title='Ticker', yaxis_title='Count')
+    st.plotly_chart(fig)
+
+    # 3. Sentiment Distribution
+    fig = go.Figure(data=[go.Histogram(x=data['Sentiment'], nbinsx=20)])
+    fig.update_layout(title_text='Sentiment Distribution', xaxis_title='Sentiment', yaxis_title='Count')
+    st.plotly_chart(fig)
 
     # Create a dropdown select box for the tickers
     tickers = data['Tickers'].explode().unique()
