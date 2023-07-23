@@ -19,7 +19,7 @@ def scrape_4chan():
     now = datetime.now()
 
     # Define the time one month ago
-    one_month_ago = now - timedelta(days=30)
+    one_month_ago = now - timedelta(days=7)
 
     # Get the list of all threads on the board
     threads = board.get_all_threads()
@@ -32,7 +32,7 @@ def scrape_4chan():
         # Get the timestamp of the thread's creation time
         thread_time = thread.topic.datetime
 
-        # Check if the thread was created within the last month
+        # Check if the thread was created within the last week
         if thread_time > one_month_ago:
             # Extract the desired information from the thread
             thread_id = thread.topic.post_id
