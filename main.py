@@ -8,7 +8,7 @@ import time
 from basc_py4chan import Board
 from datetime import datetime, timedelta
 import numpy as np
-from PIL import Image
+import pyplot as plt
 
 
 # Define a list of common English words
@@ -119,12 +119,13 @@ def main():
 
     # 3. Word Cloud
     text = ' '.join(post for post in data['Post Content'])
-    wordcloud = WordCloud(background_color='white').generate(text)
-    # Convert the word cloud to an image
-    wordcloud_image = Image.fromarray(wordcloud.to_array())
-
-    # Display the image
-    st.image(wordcloud_image, caption='Word Cloud')
+    wordcloud = WordCloud(width = 1000, height = 500).generate(" ".join(text))
+    fig=plt.figure(figsize=(15,8))
+    fig=plt.imshow(wordcloud)
+    fig=plt.axis("off")
+    fig=plt.show()
+    st.pyplot(fig)
+    plt.close() 
 
     # Create a dropdown select box for the tickers
     tickers = data['Tickers'].explode().unique()
