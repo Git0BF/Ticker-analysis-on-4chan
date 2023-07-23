@@ -118,13 +118,14 @@ def main():
     st.plotly_chart(fig)
 
     # 3. Word Cloud
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     text = ' '.join(post for post in data['Post Content'])
-    wordcloud = WordCloud(width = 1000, height = 500).generate(" ".join(text))
+    wordcloud = WordCloud(width = 1000, height = 500).generate(text)
     fig=plt.figure(figsize=(15,8))
-    fig=plt.imshow(wordcloud)
-    fig=plt.axis("off")
-    fig=plt.show()
-    st.pyplot(fig)
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    plt.show()
+    st.pyplot()
     plt.close() 
 
     # Create a dropdown select box for the tickers
