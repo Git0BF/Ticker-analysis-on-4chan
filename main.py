@@ -7,6 +7,9 @@ import re
 import time
 from basc_py4chan import Board
 from datetime import datetime, timedelta
+import numpy as np
+from PIL import Image
+
 
 # Define a list of common English words
 english_words = ["I", "THE", "AND", "OF", "TO", "IN", "THAT","FUCK", "IS", "IT", "FOR", "AS", "WAS", "WITH", "BE", "BY", "ON", "NOT", "HE", "THIS", "BUT", "ARE", "OR", "HIS", "AN", "THEY", "WHICH", "AT", "ALL", "FROM", "WE", "HAS", "NO", "WERE", "SO", "IF", "OUT", "UP", "A"]
@@ -117,6 +120,11 @@ def main():
     # 3. Word Cloud
     text = ' '.join(post for post in data['Post Content'])
     wordcloud = WordCloud(background_color='white').generate(text)
+    # Convert the word cloud to an image
+    wordcloud_image = Image.fromarray(wordcloud.to_array())
+
+    # Display the image
+    st.image(wordcloud_image, caption='Word Cloud')
 
     # Create a dropdown select box for the tickers
     tickers = data['Tickers'].explode().unique()
