@@ -8,7 +8,7 @@ import time
 from basc_py4chan import Board
 from datetime import datetime, timedelta
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 
 # Define a list of common English words
